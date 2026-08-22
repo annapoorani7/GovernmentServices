@@ -1,0 +1,27 @@
+{
+  "name": "gov-services-backend",
+  "version": "1.0.0",
+  "description": "Indian Government Services Finder",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node scripts/seed.js",
+    "migrate:category-refs": "node scripts/fix-category-refs.js",
+    "i18n:generate": "node scripts/i18n/generate-translations.js",
+    "i18n:merge": "node scripts/i18n/merge-translations.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "helmet": "^8.3.0",
+    "mongoose": "^8.3.0",
+    "node-fetch": "^3.3.2",
+    "openai": "^6.49.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
