@@ -1,0 +1,27 @@
+{
+  "name": "Sahaayak AI — Government Services Navigation",
+  "short_name": "Sahaayak AI",
+  "description": "Find and navigate to official Indian government services — with AI guidance, an eligibility quiz, and a scam-link checker.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#FF9933",
+  "lang": "en-IN",
+  "categories": ["government", "utilities", "productivity"],
+  "icons": [
+    {
+      "src": "/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
