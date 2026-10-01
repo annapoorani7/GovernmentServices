@@ -9,7 +9,7 @@ export default function Header() {
       <div className="header-inner">
         {/* ── Brand ── */}
         <div className="brand">
-          <NavLink to="/" className="brand-logo" aria-label="Sahaayak AI — Go to homepage">
+          <NavLink to="/" className="brand-logo" aria-label={t("a11y.home")}>
             <span className="flag" aria-hidden="true">🇮🇳</span>
           </NavLink>
           <div className="brand-text">
@@ -23,7 +23,7 @@ export default function Header() {
         </div>
 
         {/* ── Navigation ── */}
-        <nav className="nav-menu" aria-label="Main navigation">
+        <nav className="nav-menu" aria-label={t("a11y.mainNav")}>
           <NavLink
             to="/"
             end
@@ -33,7 +33,7 @@ export default function Header() {
             {({ isActive }) => (
               <>
                 <span>{t("nav.home")}</span>
-                {isActive && <span className="visually-hidden"> (current page)</span>}
+                {isActive && <span className="visually-hidden">{t("a11y.currentPage")}</span>}
               </>
             )}
           </NavLink>
@@ -44,7 +44,7 @@ export default function Header() {
             {({ isActive }) => (
               <>
                 <span>{t("nav.services")}</span>
-                {isActive && <span className="visually-hidden"> (current page)</span>}
+                {isActive && <span className="visually-hidden">{t("a11y.currentPage")}</span>}
               </>
             )}
           </NavLink>
@@ -55,7 +55,7 @@ export default function Header() {
             {({ isActive }) => (
               <>
                 <span>{t("nav.eligibility")}</span>
-                {isActive && <span className="visually-hidden"> (current page)</span>}
+                {isActive && <span className="visually-hidden">{t("a11y.currentPage")}</span>}
               </>
             )}
           </NavLink>
@@ -66,7 +66,7 @@ export default function Header() {
             {({ isActive }) => (
               <>
                 <span>{t("nav.lifeEvents")}</span>
-                {isActive && <span className="visually-hidden"> (current page)</span>}
+                {isActive && <span className="visually-hidden">{t("a11y.currentPage")}</span>}
               </>
             )}
           </NavLink>
@@ -77,7 +77,7 @@ export default function Header() {
             {({ isActive }) => (
               <>
                 <span>{t("nav.shield")}</span>
-                {isActive && <span className="visually-hidden"> (current page)</span>}
+                {isActive && <span className="visually-hidden">{t("a11y.currentPage")}</span>}
               </>
             )}
           </NavLink>
@@ -88,7 +88,7 @@ export default function Header() {
             {({ isActive }) => (
               <>
                 <span>{t("nav.ai")}</span>
-                {isActive && <span className="visually-hidden"> (current page)</span>}
+                {isActive && <span className="visually-hidden">{t("a11y.currentPage")}</span>}
               </>
             )}
           </NavLink>

@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import ServiceMetadata from "./ServiceMetadata.jsx";
 import { useLanguage } from "../../i18n/LanguageContext.jsx";
+import useLocalizedService, { CARD_CONTENT_FIELDS } from "../../hooks/useLocalizedService.js";
 
 export default function ServiceCard({ service }) {
-  const { t, localize } = useLanguage();
+  const { t } = useLanguage();
+  const localizedService = useLocalizedService(service, CARD_CONTENT_FIELDS);
   if (!service) return null;
 
   return (
@@ -11,15 +13,15 @@ export default function ServiceCard({ service }) {
       <div className="card-head">
         <h3>
           <Link id={`service-title-${service._id}`} to={`/services/${service._id}`} className="service-title-link">
-            {localize(service, "name")}
+            {localizedService.name}
           </Link>
         </h3>
         {service.category?.name && (
           <span className="badge">{t(`category.${service.category.name}`)}</span>
         )}
       </div>
-      <p className="desc">{localize(service, "description")}</p>
-      <ServiceMetadata service={service} />
+      <p className="desc">{localizedService.description}</p>
+      <ServiceMetadata service={localizedService} />
       <div className="card-actions">
         <Link to={`/services/${service._id}`} className="details-link">
           {t("services.details")}

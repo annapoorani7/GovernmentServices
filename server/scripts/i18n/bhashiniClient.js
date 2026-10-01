@@ -15,17 +15,24 @@ import "dotenv/config";
 
 const USER_ID = process.env.BHASHINI_USER_ID;
 const API_KEY = process.env.BHASHINI_API_KEY;
-const PIPELINE_ID = process.env.BHASHINI_PIPELINE_ID || "64392f96daac500b55c543cd";
+const PIPELINE_ID = process.env.BHASHINI_PIPELINE_ID;
+
+console.info("BHASHINI_USER_ID configured:", Boolean(USER_ID));
+console.info("BHASHINI_API_KEY configured:", Boolean(API_KEY));
+console.info("BHASHINI_PIPELINE_ID configured:", Boolean(PIPELINE_ID));
+
+export function isBhashiniConfigured() {
+  return Boolean(USER_ID && API_KEY && PIPELINE_ID);
+}
 
 const CONFIG_URL =
   "https://meity-auth.ulcacontrib.org/ulca/apis/v0/model/getModelsPipeline";
 
 const TRANSLATION_TASK = "translation";
 
-if (!USER_ID || !API_KEY) {
+if (!isBhashiniConfigured()) {
   console.warn(
-    "⚠️  BHASHINI_USER_ID / BHASHINI_API_KEY not set. " +
-      "Copy scripts/i18n/.env.bhashini.example → .env and fill them in."
+    "⚠️  BHASHINI configuration is incomplete. Set BHASHINI_USER_ID, BHASHINI_API_KEY, and BHASHINI_PIPELINE_ID before using runtime translation."
   );
 }
 

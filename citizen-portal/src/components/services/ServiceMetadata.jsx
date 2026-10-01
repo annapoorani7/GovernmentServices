@@ -1,9 +1,9 @@
 import { useLanguage } from "../../i18n/LanguageContext.jsx";
 
 export default function ServiceMetadata({ service }) {
-  const { t, localize } = useLanguage();
+  const { t } = useLanguage();
 
-  const docs = localize(service, "requiredDocuments");
+  const docs = service?.requiredDocuments;
   const documentsValue =
     Array.isArray(docs) && docs.length > 0
       ? docs.slice(0, 3).join(", ")

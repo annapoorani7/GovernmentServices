@@ -170,7 +170,7 @@ export default function AIAssistant() {
         <span className="ai-intro-note">{t("ai.introNote")}</span>
       </section>
 
-      <section className="assistant-shell" aria-label="Sahaayak AI conversation">
+      <section className="assistant-shell" aria-label={t("a11y.aiConversation")}>
         <div className="chat-toolbar">
           <div className="assistant-identity">
             <span className="assistant-avatar" aria-hidden="true">S</span>
@@ -186,7 +186,7 @@ export default function AIAssistant() {
               <div>
                 <h2>{t("ai.welcomeTitle")}</h2>
                 <p>{t("ai.welcomeBody")}</p>
-                <div className="starter-prompts" aria-label="Suggested questions">
+                <div className="starter-prompts" aria-label={t("a11y.suggestedQuestions")}>
                   {STARTER_PROMPT_KEYS.map((key) => (
                     <button key={key} type="button" onClick={() => setMessage(t(key))} disabled={loading}>{t(key)}</button>
                   ))}
@@ -220,7 +220,7 @@ export default function AIAssistant() {
 
         <form className="chat-input-area" onSubmit={sendMessage}>
           <label htmlFor="assistant-message" className="visually-hidden">{t("ai.inputPlaceholder")}</label>
-          <textarea id="assistant-message" value={message} onChange={(event) => setMessage(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); sendMessage(event); } }} placeholder={t("ai.inputPlaceholder")} aria-label="Message for Sahaayak AI" rows="2" maxLength="1000" disabled={loading} />
+          <textarea id="assistant-message" value={message} onChange={(event) => setMessage(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); sendMessage(event); } }} placeholder={t("ai.inputPlaceholder")} aria-label={t("a11y.aiMessage")} rows="2" maxLength="1000" disabled={loading} />
           {sttSupported && (
             <button
               type="button"

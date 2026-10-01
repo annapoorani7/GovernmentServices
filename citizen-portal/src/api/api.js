@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Vite proxy forwards /api to http://localhost:5000 (see vite.config.js)
-const api = axios.create({ baseURL: "/api" });
+const api = axios.create({ baseURL: import.meta.env.VITE_API_URL || "/api" });
 
 export const getCategories = () =>
   api.get("/categories").then((r) => r.data.data ?? r.data);
@@ -18,6 +18,9 @@ export const getServiceById = (id) =>
 
 export const assistWithAI = (message, sessionId) =>
   api.post("/ai/assist", { message, sessionId }).then((r) => r.data.data ?? r.data);
+
+export const translateText = (text, sourceLanguage = "en", targetLanguage = "hi") =>
+  api.post("/bhashini/translate", { text, sourceLanguage, targetLanguage }).then((r) => r.data.data ?? r.data);
 
 export const createService = (data) =>
   api.post("/services", data).then((r) => r.data);

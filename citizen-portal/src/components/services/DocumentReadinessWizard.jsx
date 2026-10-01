@@ -9,9 +9,10 @@ const STORAGE_PREFIX = "sahaayak.readiness.";
  * actionable "am I ready to apply?" flow. Progress is persisted per-service
  * in localStorage so citizens can return later without losing their place.
  */
-export default function DocumentReadinessWizard({ serviceId, documents = [], officialLink }) {
+export default function DocumentReadinessWizard({ serviceId, documents = [], sourceDocuments = documents, officialLink }) {
   const { t } = useLanguage();
   const storageKey = `${STORAGE_PREFIX}${serviceId}`;
+  const documentKeys = documents.map((_, index) => sourceDocuments[index] || documents[index]);
 
   const [checked, setChecked] = useState(() => {
     if (typeof window === "undefined") return {};
@@ -31,17 +32,17 @@ export default function DocumentReadinessWizard({ serviceId, documents = [], off
 
   const total = documents.length;
   const doneCount = useMemo(
-    () => documents.filter((doc) => checked[doc]).length,
-    [documents, checked]
+    () => documentKeys.filter((key) => checked[key]).length,
+    [documentKeys, checked]
   );
   const percent = total === 0 ? 0 : Math.round((doneCount / total) * 100);
-  const remaining = documents.filter((doc) => !checked[doc]);
+  const remaining = documents.filter((_, index) => !checked[documentKeys[index]]);
 
-  const toggle = (doc) =>
-    setChecked((prev) => ({ ...prev, [doc]: !prev[doc] }));
+  const toggle = (key) =>
+    setChecked((prev) => ({ ...prev, [key]: !prev[key] }));
   const reset = () => setChecked({});
   const markAll = () =>
-    setChecked(Object.fromEntries(documents.map((doc) => [doc, true])));
+    setChecked(Object.fromEntries(documentKeys.map((key) => [key, true])));
 
   // No documents on record — graceful, honest fallback.
   if (total === 0) {
@@ -93,13 +94,13 @@ export default function DocumentReadinessWizard({ serviceId, documents = [], off
 
       {/* Checklist */}
       <ul className="wizard-list">
-        {documents.map((doc) => (
-          <li key={doc} className={checked[doc] ? "wizard-item wizard-item--done" : "wizard-item"}>
+        {documents.map((doc, index) => (
+          <li key={documentKeys[index]} className={checked[documentKeys[index]] ? "wizard-item wizard-item--done" : "wizard-item"}>
             <label className="wizard-check">
               <input
                 type="checkbox"
-                checked={!!checked[doc]}
-                onChange={() => toggle(doc)}
+                checked={!!checked[documentKeys[index]]}
+                onChange={() => toggle(documentKeys[index])}
                 aria-label={doc}
               />
               <span className="wizard-checkbox" aria-hidden="true" />

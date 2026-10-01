@@ -3,6 +3,7 @@ import useCategories from "../hooks/useCategories.js";
 import CategoryCard from "../components/categories/CategoryCard.jsx";
 import SearchBar from "../components/services/SearchBar.jsx";
 import AshokaChakra from "../components/common/AshokaChakra.jsx";
+import ErrorMessage from "../components/common/ErrorMessage.jsx";
 import { useState } from "react";
 import { useLanguage } from "../i18n/LanguageContext.jsx";
 
@@ -64,7 +65,7 @@ export default function Home() {
             {t("home.askAi")} <span aria-hidden="true">→</span>
           </Link>
 
-          <div className="quick-tags" aria-label="Popular searches">
+          <div className="quick-tags" aria-label={t("a11y.popularSearches")}>
             <span className="quick-tags-label">{t("home.popular")}</span>
             <Link to="/services?search=aadhaar" className="quick-tag">Aadhaar</Link>
             <Link to="/services?search=pan" className="quick-tag">PAN</Link>
@@ -93,13 +94,11 @@ export default function Home() {
           </div>
 
           {error && (
-            <div className="error" role="alert">
-              ⚠️ {error}
-            </div>
+            <ErrorMessage message={error} />
           )}
 
           {loading ? (
-            <div className="category-grid" aria-busy="true" aria-label="Loading categories">
+            <div className="category-grid" aria-busy="true" aria-label={t("a11y.loadingCategories")}>
               {Array.from({ length: 6 }).map((_, i) => (
                 <div key={i} className="category-card skeleton" aria-hidden="true" />
               ))}

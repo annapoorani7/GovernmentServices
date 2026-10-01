@@ -8,6 +8,7 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import serviceRoutes from "./routes/serviceRoutes.js";
 import healthRoutes from "./routes/healthRoutes.js";
 import aiRoutes from "./routes/aiRoutes.js";
+import bhashiniRoutes from "./routes/bhashiniRoutes.js";
 import notFound from "./middleware/notFound.js";
 import errorHandler from "./middleware/errorHandler.js";
 
@@ -26,6 +27,7 @@ app.use("/api/health", healthRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/ai", aiRoutes);
+app.use("/api/bhashini", bhashiniRoutes);
 
 app.get("/", (req, res) => {
   res.send("Gov Services API Running");
@@ -38,6 +40,9 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 export default app;
